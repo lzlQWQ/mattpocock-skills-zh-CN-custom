@@ -51,8 +51,14 @@ if (files.includes("README.md")) {
   if (/npx skills@latest add mattpocock\/skills\//.test(readme)) {
     fail("README.md", "install commands still point at mattpocock/skills");
   }
-  if (!/skills-zh-CN/.test(readme)) {
-    fail("README.md", "README does not appear to reference the localized fork");
+  if (/vinvcn\/skills-zh-CN/.test(readme)) {
+    fail("README.md", "README still points at vinvcn/skills-zh-CN");
+  }
+  if (!/vinvcn\/mattpocock-skills-zh-CN/.test(readme)) {
+    fail(
+      "README.md",
+      "README does not reference vinvcn/mattpocock-skills-zh-CN",
+    );
   }
 }
 

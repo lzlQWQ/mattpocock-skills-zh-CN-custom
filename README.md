@@ -17,49 +17,49 @@
 - **[diagnose](./skills/engineering/diagnose/SKILL.md)** — 面向棘手 bug 和性能回退的纪律化诊断循环：reproduce → minimise → hypothesise → instrument → fix → regression-test。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/diagnose
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/diagnose
   ```
 
 - **[domain-model](./skills/engineering/domain-model/SKILL.md)** — 针对现有 domain model 盘问你的计划，收紧术语，并在决策成形时内联更新 `CONTEXT.md` 和 ADR。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/domain-model
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/domain-model
   ```
 
 - **[github-triage](./skills/engineering/github-triage/SKILL.md)** — 通过基于 label 的 state machine 分诊 GitHub issues。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/github-triage
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/github-triage
   ```
 
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — 根据 `CONTEXT.md` 中的 domain language 和 `docs/adr/` 中的决策，发现 codebase 中可以 deepen 的机会。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/improve-codebase-architecture
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/improve-codebase-architecture
   ```
 
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — 使用 red-green-refactor 循环做 test-driven development。一次一个 vertical slice 地构建功能或修 bug。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/tdd
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/tdd
   ```
 
 - **[to-issues](./skills/engineering/to-issues/SKILL.md)** — 使用 vertical slices，把任意计划、spec 或 PRD 拆成可独立领取的 GitHub issues。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/to-issues
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/to-issues
   ```
 
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** — 将当前对话上下文整理成 PRD，并作为 GitHub issue 提交。不做访谈，只综合已经讨论过的内容。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/to-prd
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/to-prd
   ```
 
 - **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — 让 agent zoom out，对不熟悉的代码区域给出更广的上下文或更高层视角。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/zoom-out
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/zoom-out
   ```
 
 ## Productivity
@@ -69,19 +69,19 @@
 - **[caveman](./skills/productivity/caveman/SKILL.md)** — 超压缩沟通模式。去掉废话但保留完整技术准确性，token 使用量约减少 75%。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/caveman
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/caveman
   ```
 
 - **[grill-me](./skills/productivity/grill-me/SKILL.md)** — 围绕计划或设计持续追问，直到决策树的每个分支都被解决。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/grill-me
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/grill-me
   ```
 
 - **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — 用正确结构、progressive disclosure 和 bundled resources 创建新的 skills。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/write-a-skill
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/write-a-skill
   ```
 
 ## Misc
@@ -91,23 +91,23 @@
 - **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — 设置 Claude Code hooks，在危险 git 命令（push、reset --hard、clean 等）执行前阻止它们。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/git-guardrails-claude-code
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/git-guardrails-claude-code
   ```
 
 - **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — 将测试文件中的 `as` 类型断言迁移到 @total-typescript/shoehorn。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/migrate-to-shoehorn
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/migrate-to-shoehorn
   ```
 
 - **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — 创建包含 sections、problems、solutions 和 explainers 的练习目录结构。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/scaffold-exercises
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/scaffold-exercises
   ```
 
 - **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — 设置 Husky pre-commit hooks，集成 lint-staged、Prettier、type checking 和 tests。
 
   ```
-  npx skills@latest add vinvcn/skills-zh-CN/setup-pre-commit
+  npx skills@latest add vinvcn/mattpocock-skills-zh-CN/setup-pre-commit
   ```
