@@ -1,13 +1,13 @@
-Skills are organized into bucket folders under `skills/`:
+Skills 按 bucket folder 组织在 `skills/` 下：
 
-- `engineering/` — daily code work
-- `productivity/` — daily non-code workflow tools
-- `misc/` — kept around but rarely used
-- `personal/` — tied to my own setup, not promoted
-- `deprecated/` — no longer used
+- `engineering/` — 日常代码工作
+- `productivity/` — 日常非代码工作流工具
+- `misc/` — 保留但很少使用
+- `personal/` — 绑定我自己的设置，不推广
+- `deprecated/` — 不再使用
 
-Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`. Skills in `personal/` and `deprecated/` must not appear in either.
+`engineering/`、`productivity/` 或 `misc/` 中的每个 skill，都必须在顶层 `README.md` 中有引用，并在 `.claude-plugin/plugin.json` 中有条目。`personal/` 和 `deprecated/` 中的 skills 不能出现在这两个位置。
 
-Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
+顶层 `README.md` 中的每个 skill 条目都必须把 skill 名链接到对应的 `SKILL.md`。
 
-Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`.
+每个 bucket folder 都有一个 `README.md`，列出该 bucket 中的所有 skills，并给出一行描述；skill 名需要链接到对应的 `SKILL.md`。

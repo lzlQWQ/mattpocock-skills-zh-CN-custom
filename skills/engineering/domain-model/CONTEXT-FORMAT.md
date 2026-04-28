@@ -38,19 +38,19 @@ _Avoid_: Client, buyer, account
 
 ## Rules
 
-- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
-- **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
-- **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
-- **Show relationships.** Use bold term names and express cardinality where obvious.
-- **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
-- **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
-- **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
+- **Be opinionated.** 同一概念有多个词时，选择最好的一个，并把其他词列为 aliases to avoid。
+- **Flag conflicts explicitly.** 如果 term 被模糊使用，在 "Flagged ambiguities" 中指出并给出清晰 resolution。
+- **Keep definitions tight.** 最多一句。定义它_是什么_，不是它_做什么_。
+- **Show relationships.** 使用粗体 term names，并在明显时表达 cardinality。
+- **Only include terms specific to this project's context.** 通用编程概念（timeouts、error types、utility patterns）不属于这里，即使项目大量使用。添加 term 前先问：这是这个 context 独有概念，还是通用编程概念？只包含前者。
+- **Group terms under subheadings** 当自然 clusters 出现时使用。如果所有 terms 属于一个 cohesive area，扁平列表即可。
+- **Write an example dialogue.** 写一段 dev 与 domain expert 的对话，展示 terms 如何自然互动，并澄清相关概念边界。
 
 ## Single vs multi-context repos
 
-**Single context (most repos):** One `CONTEXT.md` at the repo root.
+**Single context（多数 repos）：** root 下一个 `CONTEXT.md`。
 
-**Multiple contexts:** A `CONTEXT-MAP.md` at the repo root lists the contexts, where they live, and how they relate to each other:
+**Multiple contexts：** root 下的 `CONTEXT-MAP.md` 列出 contexts、位置以及相互关系：
 
 ```md
 # Context Map
@@ -68,10 +68,10 @@ _Avoid_: Client, buyer, account
 - **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
 ```
 
-The skill infers which structure applies:
+skill 会推断适用结构：
 
-- If `CONTEXT-MAP.md` exists, read it to find contexts
-- If only a root `CONTEXT.md` exists, single context
-- If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
+- 如果 `CONTEXT-MAP.md` 存在，读取它来查找 contexts
+- 如果只有 root `CONTEXT.md`，就是 single context
+- 如果两者都不存在，在第一个 term 被解决时懒创建 root `CONTEXT.md`
 
-When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.
+当存在多个 contexts 时，推断当前话题属于哪一个。不清楚就询问。

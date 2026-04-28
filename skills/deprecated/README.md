@@ -1,9 +1,9 @@
-# Deprecated
+# Deprecated Skills
 
-Skills I no longer use.
+这些 skills 已不再使用，保留仅作参考。
 
-- **[design-an-interface](./design-an-interface/SKILL.md)** — Generate multiple radically different interface designs for a module using parallel sub-agents.
-- **[qa](./qa/SKILL.md)** — Interactive QA session where user reports bugs conversationally and the agent files GitHub issues.
-- **[request-refactor-plan](./request-refactor-plan/SKILL.md)** — Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue.
-- **[triage-issue](./triage-issue/SKILL.md)** — Investigate a bug by exploring the codebase, identify the root cause, and file a GitHub issue with a TDD-based fix plan.
-- **[ubiquitous-language](./ubiquitous-language/SKILL.md)** — Extract a DDD-style ubiquitous language glossary from the current conversation.
+- [design-an-interface](./design-an-interface/SKILL.md) — 生成多个 interface 设计方案。
+- [qa](./qa/SKILL.md) — 交互式 QA session。
+- [request-refactor-plan](./request-refactor-plan/SKILL.md) — 创建 refactor plan。
+- [triage-issue](./triage-issue/SKILL.md) — 分诊问题并生成 TDD 修复计划。
+- [ubiquitous-language](./ubiquitous-language/SKILL.md) — 提取 DDD ubiquitous language glossary。

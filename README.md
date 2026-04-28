@@ -1,109 +1,113 @@
-# Agent Skills For Real Engineers
+# Agent Skills For Real Engineers 中文版
 
-My agent skills that I use every day to do real engineering - not vibe coding.
+这是 [`mattpocock/skills`](https://github.com/mattpocock/skills) 的简体中文本地化 fork。原项目版权归 Matt Pocock 所有，并按 MIT License 授权。本 fork 保留原始许可证，并额外提供中文翻译，方便中文用户使用。
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
+> 说明：本项目翻译了文档和技能说明，但保留了目录名、技能名、命令、代码块和工具相关标识，以避免破坏安装和运行行为。
 
-[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
+我每天用于真实工程工作的 agent skills，不是 vibe coding。
+
+如果你想跟进这些 skills 的更新，以及我后续创建的新 skill，可以加入大约 60,000 名开发者订阅的 newsletter：
+
+[订阅 Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
 ## Engineering
 
-Skills I use daily for code work.
+我每天用于代码工作的 skills。
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.
-
-  ```
-  npx skills@latest add mattpocock/skills/diagnose
-  ```
-
-- **[domain-model](./skills/engineering/domain-model/SKILL.md)** — Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — 面向棘手 bug 和性能回退的纪律化诊断循环：reproduce → minimise → hypothesise → instrument → fix → regression-test。
 
   ```
-  npx skills@latest add mattpocock/skills/domain-model
+  npx skills@latest add vinvcn/skills-zh-CN/diagnose
   ```
 
-- **[github-triage](./skills/engineering/github-triage/SKILL.md)** — Triage GitHub issues through a label-based state machine.
+- **[domain-model](./skills/engineering/domain-model/SKILL.md)** — 针对现有 domain model 盘问你的计划，收紧术语，并在决策成形时内联更新 `CONTEXT.md` 和 ADR。
 
   ```
-  npx skills@latest add mattpocock/skills/github-triage
+  npx skills@latest add vinvcn/skills-zh-CN/domain-model
   ```
 
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
+- **[github-triage](./skills/engineering/github-triage/SKILL.md)** — 通过基于 label 的 state machine 分诊 GitHub issues。
 
   ```
-  npx skills@latest add mattpocock/skills/improve-codebase-architecture
+  npx skills@latest add vinvcn/skills-zh-CN/github-triage
   ```
 
-- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — 根据 `CONTEXT.md` 中的 domain language 和 `docs/adr/` 中的决策，发现 codebase 中可以 deepen 的机会。
 
   ```
-  npx skills@latest add mattpocock/skills/tdd
+  npx skills@latest add vinvcn/skills-zh-CN/improve-codebase-architecture
   ```
 
-- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** — 使用 red-green-refactor 循环做 test-driven development。一次一个 vertical slice 地构建功能或修 bug。
 
   ```
-  npx skills@latest add mattpocock/skills/to-issues
+  npx skills@latest add vinvcn/skills-zh-CN/tdd
   ```
 
-- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — 使用 vertical slices，把任意计划、spec 或 PRD 拆成可独立领取的 GitHub issues。
 
   ```
-  npx skills@latest add mattpocock/skills/to-prd
+  npx skills@latest add vinvcn/skills-zh-CN/to-issues
   ```
 
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — 将当前对话上下文整理成 PRD，并作为 GitHub issue 提交。不做访谈，只综合已经讨论过的内容。
 
   ```
-  npx skills@latest add mattpocock/skills/zoom-out
+  npx skills@latest add vinvcn/skills-zh-CN/to-prd
+  ```
+
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — 让 agent zoom out，对不熟悉的代码区域给出更广的上下文或更高层视角。
+
+  ```
+  npx skills@latest add vinvcn/skills-zh-CN/zoom-out
   ```
 
 ## Productivity
 
-General workflow tools, not code-specific.
+通用工作流工具，不限于代码。
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** — Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
-
-  ```
-  npx skills@latest add mattpocock/skills/caveman
-  ```
-
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** — 超压缩沟通模式。去掉废话但保留完整技术准确性，token 使用量约减少 75%。
 
   ```
-  npx skills@latest add mattpocock/skills/grill-me
+  npx skills@latest add vinvcn/skills-zh-CN/caveman
   ```
 
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Create new skills with proper structure, progressive disclosure, and bundled resources.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — 围绕计划或设计持续追问，直到决策树的每个分支都被解决。
 
   ```
-  npx skills@latest add mattpocock/skills/write-a-skill
+  npx skills@latest add vinvcn/skills-zh-CN/grill-me
+  ```
+
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — 用正确结构、progressive disclosure 和 bundled resources 创建新的 skills。
+
+  ```
+  npx skills@latest add vinvcn/skills-zh-CN/write-a-skill
   ```
 
 ## Misc
 
-Tools I keep around but rarely use.
+我保留但很少使用的工具。
 
-- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
-
-  ```
-  npx skills@latest add mattpocock/skills/git-guardrails-claude-code
-  ```
-
-- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
+- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — 设置 Claude Code hooks，在危险 git 命令（push、reset --hard、clean 等）执行前阻止它们。
 
   ```
-  npx skills@latest add mattpocock/skills/migrate-to-shoehorn
+  npx skills@latest add vinvcn/skills-zh-CN/git-guardrails-claude-code
   ```
 
-- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
+- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — 将测试文件中的 `as` 类型断言迁移到 @total-typescript/shoehorn。
 
   ```
-  npx skills@latest add mattpocock/skills/scaffold-exercises
+  npx skills@latest add vinvcn/skills-zh-CN/migrate-to-shoehorn
   ```
 
-- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
+- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — 创建包含 sections、problems、solutions 和 explainers 的练习目录结构。
 
   ```
-  npx skills@latest add mattpocock/skills/setup-pre-commit
+  npx skills@latest add vinvcn/skills-zh-CN/scaffold-exercises
+  ```
+
+- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — 设置 Husky pre-commit hooks，集成 lint-staged、Prettier、type checking 和 tests。
+
+  ```
+  npx skills@latest add vinvcn/skills-zh-CN/setup-pre-commit
   ```

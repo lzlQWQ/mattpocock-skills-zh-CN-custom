@@ -1,44 +1,44 @@
 # Interface Design
 
-When the user wants to explore alternative interfaces for a chosen deepening candidate, use this parallel sub-agent pattern. Based on "Design It Twice" (Ousterhout) — your first idea is unlikely to be the best.
+当用户想为选中的 deepening candidate 探索替代 interfaces 时，使用这个 parallel sub-agent pattern。基于 “Design It Twice”（Ousterhout）：你的第一个想法很可能不是最好的。
 
-Uses the vocabulary in [LANGUAGE.md](LANGUAGE.md) — **module**, **interface**, **seam**, **adapter**, **leverage**.
+使用 [LANGUAGE.md](LANGUAGE.md) 中的词汇：**module**、**interface**、**seam**、**adapter**、**leverage**。
 
 ## Process
 
 ### 1. Frame the problem space
 
-Before spawning sub-agents, write a user-facing explanation of the problem space for the chosen candidate:
+在生成 sub-agents 前，先为选中的 candidate 写一段面向用户的问题空间说明：
 
-- The constraints any new interface would need to satisfy
-- The dependencies it would rely on, and which category they fall into (see [DEEPENING.md](DEEPENING.md))
-- A rough illustrative code sketch to ground the constraints — not a proposal, just a way to make the constraints concrete
+- 新 interface 必须满足的 constraints
+- 它依赖哪些 dependencies，以及它们属于哪个 category（见 [DEEPENING.md](DEEPENING.md)）
+- 一个粗略 illustrative code sketch，用来让 constraints 具体化；这不是 proposal，只是帮助理解 constraints
 
-Show this to the user, then immediately proceed to Step 2. The user reads and thinks while the sub-agents work in parallel.
+把它展示给用户，然后立即进入 Step 2。用户阅读和思考时，sub-agents 并行工作。
 
 ### 2. Spawn sub-agents
 
-Spawn 3+ sub-agents in parallel using the Agent tool. Each must produce a **radically different** interface for the deepened module.
+使用 Agent tool 并行生成 3+ 个 sub-agents。每个都必须为 deepened module 产出一个**根本不同**的 interface。
 
-Prompt each sub-agent with a separate technical brief (file paths, coupling details, dependency category from [DEEPENING.md](DEEPENING.md), what sits behind the seam). The brief is independent of the user-facing problem-space explanation in Step 1. Give each agent a different design constraint:
+给每个 sub-agent 单独的 technical brief（file paths、coupling details、[DEEPENING.md](DEEPENING.md) 中的 dependency category、seam 后面是什么）。brief 独立于 Step 1 中面向用户的问题空间说明。给每个 agent 不同的 design constraint：
 
 - Agent 1: "Minimize the interface — aim for 1–3 entry points max. Maximise leverage per entry point."
 - Agent 2: "Maximise flexibility — support many use cases and extension."
 - Agent 3: "Optimise for the most common caller — make the default case trivial."
 - Agent 4 (if applicable): "Design around ports & adapters for cross-seam dependencies."
 
-Include both [LANGUAGE.md](LANGUAGE.md) vocabulary and CONTEXT.md vocabulary in the brief so each sub-agent names things consistently with the architecture language and the project's domain language.
+在 brief 中同时包含 [LANGUAGE.md](LANGUAGE.md) 词汇和 CONTEXT.md 词汇，让每个 sub-agent 使用 architecture language 和项目 domain language 一致命名。
 
-Each sub-agent outputs:
+每个 sub-agent 输出：
 
-1. Interface (types, methods, params — plus invariants, ordering, error modes)
-2. Usage example showing how callers use it
-3. What the implementation hides behind the seam
-4. Dependency strategy and adapters (see [DEEPENING.md](DEEPENING.md))
-5. Trade-offs — where leverage is high, where it's thin
+1. Interface（types、methods、params，以及 invariants、ordering、error modes）
+2. Usage example，展示 callers 如何使用它
+3. Implementation 在 seam 后面隐藏什么
+4. Dependency strategy 和 adapters（见 [DEEPENING.md](DEEPENING.md)）
+5. Trade-offs：哪里 leverage 高，哪里薄
 
 ### 3. Present and compare
 
-Present designs sequentially so the user can absorb each one, then compare them in prose. Contrast by **depth** (leverage at the interface), **locality** (where change concentrates), and **seam placement**.
+顺序展示 designs，让用户能吸收每个方案，然后用 prose 比较。按 **depth**（interface 上的 leverage）、**locality**（change 集中在哪里）和 **seam placement** 对比。
 
-After comparing, give your own recommendation: which design you think is strongest and why. If elements from different designs would combine well, propose a hybrid. Be opinionated — the user wants a strong read, not a menu.
+比较后给出你自己的 recommendation：你认为哪个 design 最强，以及为什么。如果不同 designs 的元素可以很好组合，就提出 hybrid。要有判断力；用户要的是明确判断，不是菜单。

@@ -1,66 +1,66 @@
 ---
 name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+description: 使用 tracer-bullet vertical slices，把 plan、spec 或 PRD 拆成可独立领取的 GitHub issues。Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
 ---
 
 # To Issues
 
-Break a plan into independently-grabbable GitHub issues using vertical slices (tracer bullets).
+使用 vertical slices（tracer bullets）把计划拆成可独立领取的 GitHub issues。
 
 ## Process
 
 ### 1. Gather context
 
-Work from whatever is already in the conversation context. If the user passes a GitHub issue number or URL as an argument, fetch it with `gh issue view <number>` (with comments).
+基于 conversation context 中已有内容工作。如果用户传入 GitHub issue number 或 URL 作为参数，用 `gh issue view <number>`（带 comments）获取它。
 
 ### 2. Explore the codebase (optional)
 
-If you have not already explored the codebase, do so to understand the current state of the code.
+如果还没探索 codebase，就先探索，以理解代码当前状态。
 
 ### 3. Draft vertical slices
 
-Break the plan into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+把计划拆成 **tracer bullet** issues。每个 issue 都是一个薄 vertical slice，end-to-end 穿过所有 integration layers，而不是某一层的 horizontal slice。
 
-Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
+Slices 可以是 `HITL` 或 `AFK`。HITL slices 需要人类交互，例如 architecture decision 或 design review。AFK slices 可以无人交互地实现并合并。尽可能优先 AFK。
 
 <vertical-slice-rules>
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
-- A completed slice is demoable or verifiable on its own
-- Prefer many thin slices over few thick ones
+- 每个 slice 都交付一条窄但 COMPLETE 的路径，穿过每一层（schema, API, UI, tests）
+- 完成后的 slice 自身可 demo 或验证
+- 偏好多而薄的 slices，而不是少而厚的 slices
 </vertical-slice-rules>
 
 ### 4. Quiz the user
 
-Present the proposed breakdown as a numbered list. For each slice, show:
+把 proposed breakdown 作为编号列表展示。每个 slice 显示：
 
-- **Title**: short descriptive name
-- **Type**: HITL / AFK
-- **Blocked by**: which other slices (if any) must complete first
-- **User stories covered**: which user stories this addresses (if the source material has them)
+- **Title**：短描述名
+- **Type**：HITL / AFK
+- **Blocked by**：哪些其他 slices 必须先完成（如果有）
+- **User stories covered**：覆盖哪些 user stories（如果 source material 中有）
 
-Ask the user:
+询问用户：
 
-- Does the granularity feel right? (too coarse / too fine)
-- Are the dependency relationships correct?
-- Should any slices be merged or split further?
-- Are the correct slices marked as HITL and AFK?
+- Granularity 是否合适？（too coarse / too fine）
+- Dependency relationships 是否正确？
+- 是否需要 merge 或继续 split 某些 slices？
+- HITL 和 AFK 标记是否正确？
 
-Iterate until the user approves the breakdown.
+迭代直到用户批准 breakdown。
 
 ### 5. Create the GitHub issues
 
-For each approved slice, create a GitHub issue using `gh issue create`. Use the issue body template below.
+对每个批准的 slice，使用 `gh issue create` 创建 GitHub issue。使用下面的 issue body template。
 
-Create issues in dependency order (blockers first) so you can reference real issue numbers in the "Blocked by" field.
+按 dependency order 创建 issues（blockers first），这样可以在 "Blocked by" 字段引用真实 issue numbers。
 
 <issue-template>
 ## Parent
 
-#<parent-issue-number> (if the source was a GitHub issue, otherwise omit this section)
+#<parent-issue-number>（如果 source 是 GitHub issue；否则省略本 section）
 
 ## What to build
 
-A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.
+这个 vertical slice 的简洁描述。描述 end-to-end behavior，不要按 layer-by-layer implementation 描述。
 
 ## Acceptance criteria
 
@@ -70,10 +70,10 @@ A concise description of this vertical slice. Describe the end-to-end behavior, 
 
 ## Blocked by
 
-- Blocked by #<issue-number> (if any)
+- Blocked by #<issue-number>（如果有）
 
-Or "None - can start immediately" if no blockers.
+如果没有 blocker，写 "None - can start immediately"。
 
 </issue-template>
 
-Do NOT close or modify any parent issue.
+不要 close 或 modify 任何 parent issue。

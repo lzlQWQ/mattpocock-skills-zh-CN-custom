@@ -1,8 +1,8 @@
 # ADR Format
 
-ADRs live in `docs/adr/` and use sequential numbering: `0001-slug.md`, `0002-slug.md`, etc.
+ADRs 位于 `docs/adr/`，使用顺序编号：`0001-slug.md`、`0002-slug.md` 等。
 
-Create the `docs/adr/` directory lazily — only when the first ADR is needed.
+懒创建 `docs/adr/` 目录，只有第一个 ADR 需要时才创建。
 
 ## Template
 
@@ -12,36 +12,36 @@ Create the `docs/adr/` directory lazily — only when the first ADR is needed.
 {1-3 sentences: what's the context, what did we decide, and why.}
 ```
 
-That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why* — not in filling out sections.
+就这样。一个 ADR 可以只有一段。价值在于记录_做出了_某个决策以及_为什么_，不是填满各种 section。
 
 ## Optional sections
 
-Only include these when they add genuine value. Most ADRs won't need them.
+只有真正增加价值时才包含这些。多数 ADR 不需要。
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`) — useful when decisions are revisited
-- **Considered Options** — only when the rejected alternatives are worth remembering
-- **Consequences** — only when non-obvious downstream effects need to be called out
+- **Status** frontmatter（`proposed | accepted | deprecated | superseded by ADR-NNNN`）— 当决策被重新审视时有用
+- **Considered Options** — 只有 rejected alternatives 值得记住时才写
+- **Consequences** — 只有非显然的下游影响需要指出时才写
 
 ## Numbering
 
-Scan `docs/adr/` for the highest existing number and increment by one.
+扫描 `docs/adr/` 中现有最高编号，并加一。
 
 ## When to offer an ADR
 
-All three of these must be true:
+以下三点必须都成立：
 
-1. **Hard to reverse** — the cost of changing your mind later is meaningful
-2. **Surprising without context** — a future reader will look at the code and wonder "why on earth did they do it this way?"
-3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
+1. **Hard to reverse** — 以后改变主意的成本有意义
+2. **Surprising without context** — 未来读者看代码会想“为什么要这么做？”
+3. **The result of a real trade-off** — 存在真实替代方案，并基于具体理由做了选择
 
-If a decision is easy to reverse, skip it — you'll just reverse it. If it's not surprising, nobody will wonder why. If there was no real alternative, there's nothing to record beyond "we did the obvious thing."
+如果决策容易逆转，就跳过；反正会逆转。如果它不令人意外，没人会问为什么。如果没有真实替代方案，就没有什么需要记录，除了“我们做了显而易见的事”。
 
 ### What qualifies
 
-- **Architectural shape.** "We're using a monorepo." "The write model is event-sourced, the read model is projected into Postgres."
-- **Integration patterns between contexts.** "Ordering and Billing communicate via domain events, not synchronous HTTP."
-- **Technology choices that carry lock-in.** Database, message bus, auth provider, deployment target. Not every library — just the ones that would take a quarter to swap out.
-- **Boundary and scope decisions.** "Customer data is owned by the Customer context; other contexts reference it by ID only." The explicit no-s are as valuable as the yes-s.
-- **Deliberate deviations from the obvious path.** "We're using manual SQL instead of an ORM because X." Anything where a reasonable reader would assume the opposite. These stop the next engineer from "fixing" something that was deliberate.
-- **Constraints not visible in the code.** "We can't use AWS because of compliance requirements." "Response times must be under 200ms because of the partner API contract."
-- **Rejected alternatives when the rejection is non-obvious.** If you considered GraphQL and picked REST for subtle reasons, record it — otherwise someone will suggest GraphQL again in six months.
+- **Architectural shape.** “我们使用 monorepo。”“write model 是 event-sourced，read model 投影到 Postgres。”
+- **Integration patterns between contexts.** “Ordering 和 Billing 通过 domain events 通信，而不是 synchronous HTTP。”
+- **Technology choices that carry lock-in.** Database、message bus、auth provider、deployment target。不是每个 library，只记录需要一个季度才能换掉的选择。
+- **Boundary and scope decisions.** “Customer data 由 Customer context 拥有；其他 contexts 只通过 ID 引用。”明确的 no 和 yes 一样有价值。
+- **Deliberate deviations from the obvious path.** “我们用 manual SQL 而不是 ORM，因为 X。”任何合理读者会默认相反的地方都要记录，避免下个工程师把有意选择“修掉”。
+- **Constraints not visible in the code.** “由于 compliance requirements，我们不能用 AWS。”“由于 partner API contract，response times 必须低于 200ms。”
+- **Rejected alternatives when the rejection is non-obvious.** 如果你考虑过 GraphQL 并因微妙理由选择 REST，记录它，否则六个月后又会有人建议 GraphQL。

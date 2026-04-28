@@ -1,76 +1,76 @@
 ---
 name: improve-codebase-architecture
-description: Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
+description: 根据 CONTEXT.md 中的 domain language 和 docs/adr/ 中的 decisions，寻找 codebase 的 deepening opportunities。Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
 ---
 
 # Improve Codebase Architecture
 
-Surface architectural friction and propose **deepening opportunities** — refactors that turn shallow modules into deep ones. The aim is testability and AI-navigability.
+暴露 architecture friction，并提出 **deepening opportunities**，也就是把 shallow modules 变成 deep modules 的 refactors。目标是 testability 和 AI-navigability。
 
 ## Glossary
 
-Use these terms exactly in every suggestion. Consistent language is the point — don't drift into "component," "service," "API," or "boundary." Full definitions in [LANGUAGE.md](LANGUAGE.md).
+在每个建议中精确使用这些术语。语言一致性就是重点，不要漂移到 “component”、“service”、“API” 或 “boundary”。完整定义见 [LANGUAGE.md](LANGUAGE.md)。
 
-- **Module** — anything with an interface and an implementation (function, class, package, slice).
-- **Interface** — everything a caller must know to use the module: types, invariants, error modes, ordering, config. Not just the type signature.
-- **Implementation** — the code inside.
-- **Depth** — leverage at the interface: a lot of behaviour behind a small interface. **Deep** = high leverage. **Shallow** = interface nearly as complex as the implementation.
-- **Seam** — where an interface lives; a place behaviour can be altered without editing in place. (Use this, not "boundary.")
-- **Adapter** — a concrete thing satisfying an interface at a seam.
-- **Leverage** — what callers get from depth.
-- **Locality** — what maintainers get from depth: change, bugs, knowledge concentrated in one place.
+- **Module** — 任何有 interface 和 implementation 的东西（function、class、package、slice）。
+- **Interface** — caller 为正确使用 module 必须知道的一切：types、invariants、error modes、ordering、config。不只是 type signature。
+- **Implementation** — 内部代码。
+- **Depth** — interface 上的 leverage：小 interface 后面有大量 behaviour。**Deep** = 高 leverage。**Shallow** = interface 几乎和 implementation 一样复杂。
+- **Seam** — interface 所在的位置；可以不原地编辑就改变 behaviour 的地方。（用这个词，不用 “boundary”。）
+- **Adapter** — 在 seam 处满足 interface 的具体东西。
+- **Leverage** — callers 从 depth 获得的东西。
+- **Locality** — maintainers 从 depth 获得的东西：change、bugs、knowledge 集中在一个地方。
 
-Key principles (see [LANGUAGE.md](LANGUAGE.md) for the full list):
+关键原则（完整列表见 [LANGUAGE.md](LANGUAGE.md)）：
 
-- **Deletion test**: imagine deleting the module. If complexity vanishes, it was a pass-through. If complexity reappears across N callers, it was earning its keep.
+- **Deletion test**：想象删除这个 module。如果复杂性消失，它只是 pass-through。如果复杂性在 N 个 callers 中重新出现，它就在发挥价值。
 - **The interface is the test surface.**
 - **One adapter = hypothetical seam. Two adapters = real seam.**
 
-This skill is _informed_ by the project's domain model — `CONTEXT.md` and any `docs/adr/`. The domain language gives names to good seams; ADRs record decisions the skill should not re-litigate. See [CONTEXT-FORMAT.md](../domain-model/CONTEXT-FORMAT.md) and [ADR-FORMAT.md](../domain-model/ADR-FORMAT.md).
+这个 skill 会参考项目的 domain model：`CONTEXT.md` 和任何 `docs/adr/`。domain language 为好的 seams 命名；ADRs 记录 skill 不应重新争论的决策。见 [CONTEXT-FORMAT.md](../domain-model/CONTEXT-FORMAT.md) 和 [ADR-FORMAT.md](../domain-model/ADR-FORMAT.md)。
 
 ## Process
 
 ### 1. Explore
 
-Read existing documentation first:
+先读现有文档：
 
-- `CONTEXT.md` (or `CONTEXT-MAP.md` + each `CONTEXT.md` in a multi-context repo)
-- Relevant ADRs in `docs/adr/` (and any context-scoped `docs/adr/` directories)
+- `CONTEXT.md`（或多 context repo 中的 `CONTEXT-MAP.md` + 每个 `CONTEXT.md`）
+- `docs/adr/` 中相关 ADRs（以及任何 context-scoped `docs/adr/` 目录）
 
-If any of these files don't exist, proceed silently — don't flag their absence or suggest creating them upfront.
+如果这些文件不存在，静默继续；不要预先强调缺失，也不要建议创建。
 
-Then use the Agent tool with `subagent_type=Explore` to walk the codebase. Don't follow rigid heuristics — explore organically and note where you experience friction:
+然后使用 Agent tool 和 `subagent_type=Explore` 遍历 codebase。不要死套启发式规则；自然探索并记录你感到 friction 的地方：
 
-- Where does understanding one concept require bouncing between many small modules?
-- Where are modules **shallow** — interface nearly as complex as the implementation?
-- Where have pure functions been extracted just for testability, but the real bugs hide in how they're called (no **locality**)?
-- Where do tightly-coupled modules leak across their seams?
-- Which parts of the codebase are untested, or hard to test through their current interface?
+- 理解一个概念是否需要在许多小 modules 之间来回跳？
+- 哪些 modules 是 **shallow**，interface 几乎和 implementation 一样复杂？
+- 哪些 pure functions 只是为了 testability 被抽出，但真正 bug 藏在调用方式里（没有 **locality**）？
+- 哪些 tightly-coupled modules 会跨 seams 泄漏？
+- codebase 哪些部分未测试，或很难通过当前 interface 测试？
 
-Apply the **deletion test** to anything you suspect is shallow: would deleting it concentrate complexity, or just move it? A "yes, concentrates" is the signal you want.
+对任何疑似 shallow 的东西应用 **deletion test**：删除它会集中复杂性，还是只是移动复杂性？“会集中”就是你要找的信号。
 
 ### 2. Present candidates
 
-Present a numbered list of deepening opportunities. For each candidate:
+展示一个编号列表，列出 deepening opportunities。每个 candidate 包含：
 
-- **Files** — which files/modules are involved
-- **Problem** — why the current architecture is causing friction
-- **Solution** — plain English description of what would change
-- **Benefits** — explained in terms of locality and leverage, and also in how tests would improve
+- **Files** — 涉及哪些 files/modules
+- **Problem** — 当前 architecture 为什么造成 friction
+- **Solution** — 用普通语言说明会改变什么
+- **Benefits** — 用 locality 和 leverage 解释，也说明 tests 会如何改善
 
-**Use CONTEXT.md vocabulary for the domain, and [LANGUAGE.md](LANGUAGE.md) vocabulary for the architecture.** If `CONTEXT.md` defines "Order," talk about "the Order intake module" — not "the FooBarHandler," and not "the Order service."
+**domain 词汇使用 CONTEXT.md，architecture 词汇使用 [LANGUAGE.md](LANGUAGE.md)。** 如果 `CONTEXT.md` 定义了 “Order”，就说 “Order intake module”，不要说 “FooBarHandler”，也不要说 “Order service”。
 
-**ADR conflicts**: if a candidate contradicts an existing ADR, only surface it when the friction is real enough to warrant revisiting the ADR. Mark it clearly (e.g. _"contradicts ADR-0007 — but worth reopening because…"_). Don't list every theoretical refactor an ADR forbids.
+**ADR conflicts**：如果 candidate 与现有 ADR 冲突，只有当 friction 真实到值得重开 ADR 时才提出。明确标记（例如 _"contradicts ADR-0007 — but worth reopening because…"_）。不要列出 ADR 理论上禁止的每个 refactor。
 
-Do NOT propose interfaces yet. Ask the user: "Which of these would you like to explore?"
+不要还没问用户就提出 interfaces。问用户：“你想探索哪一个？”
 
 ### 3. Grilling loop
 
-Once the user picks a candidate, drop into a grilling conversation. Walk the design tree with them — constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
+用户选中 candidate 后，进入 grilling conversation。和他们走完整个 design tree：constraints、dependencies、deepened module 的形状、seam 后面是什么、哪些 tests 能经受变化。
 
-Side effects happen inline as decisions crystallize:
+决策成形时内联产生 side effects：
 
-- **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md` — same discipline as `/domain-model` (see [CONTEXT-FORMAT.md](../domain-model/CONTEXT-FORMAT.md)). Create the file lazily if it doesn't exist.
-- **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
-- **User rejects the candidate with a load-bearing reason?** Offer an ADR, framed as: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones. See [ADR-FORMAT.md](../domain-model/ADR-FORMAT.md).
-- **Want to explore alternative interfaces for the deepened module?** See [INTERFACE-DESIGN.md](INTERFACE-DESIGN.md).
+- **用 `CONTEXT.md` 中没有的概念命名 deepened module？** 把 term 加到 `CONTEXT.md`，纪律同 `/domain-model`（见 [CONTEXT-FORMAT.md](../domain-model/CONTEXT-FORMAT.md)）。文件不存在就懒创建。
+- **对话中收紧了模糊 term？** 立刻更新 `CONTEXT.md`。
+- **用户用有分量的理由拒绝 candidate？** 提议 ADR，表述为：_"要我把这记录成 ADR，避免未来 architecture reviews 再次建议它吗？"_ 只有当未来 explorer 真的需要这个理由来避免重复建议时才提议；短期理由（“现在不值得”）和显而易见的理由跳过。见 [ADR-FORMAT.md](../domain-model/ADR-FORMAT.md)。
+- **想探索 deepened module 的替代 interfaces？** 见 [INTERFACE-DESIGN.md](INTERFACE-DESIGN.md)。
