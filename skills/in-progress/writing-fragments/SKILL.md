@@ -11,6 +11,8 @@ description: Grilling session that mines the user for fragments — heterogeneou
 
 如果用户没有传入路径，只询问一次文档保存到哪里，然后在 session 剩余部分记住它。
 
+从用户说的第一句话开始捕获 fragments，包括 initial prompt。
+
 第一次写入时，在顶部放一个带 working title 的单一 H1（之后可以改），除此之外什么都不要放：不要 metadata、TOC 或 date。
 
 </what-to-do>
@@ -32,19 +34,6 @@ Fragments 刻意保持异质。可能成为 fragment 的例子：
 - 一个 complaint、confession 或 punchline。
 
 Novelist's diary 是模型：多年无结构的 noticings，之后被挖掘成 raw material。Fragments 就是 noticings。
-
-## How the session feels
-
-像 grilling session，只是 fragments 是副产品。形状如下：
-
-- 先问用户正在围绕什么打转。让他们 ramble。
-- 从他们的话里捕获 fragments。当他们说出可 quote 的话，原样捕获或稍微 sharpen。
-- 反向生成 candidate fragments 给他们试。提供同一想法的两三个版本，让他们选择或拒绝。
-- 有东西落地就追加；没落地就丢掉。
-- 继续追问。Excavate。"You said X — say it three different ways." "What's the version of that you wouldn't say in public?" "What's the example that made you believe this in the first place?"
-- 推动质量。文章只会和它的 fragments 一样好。如果一个 fragment 很 mushy，追加前先提出更 sharp 的改写。
-
-慷慨 blue-sky，但持续施压以加深和收紧。不要急着 outline。不要分组。不要提出结构。如果用户开始问结构，重定向："We're still mining. Structure comes later."
 
 ## File format
 
@@ -82,14 +71,5 @@ Fragments 用 horizontal rule（`\n---\n`）分隔。正文内不要 headings。
 每次写入前：从磁盘重新读取文件。用户可能在回合之间编辑、重排或删除 fragments；保留他们的变化。永远不要 overwrite 文件；只 append（或者在用户要求时，就地编辑特定 fragment）。
 
 用户随时可以说 "cut the last one"、"rewrite that one sharper"、"merge those two"。把它们当成一等指令。
-
-## Out of scope
-
-- Outlines、section plans、paragraph structure、transitions。
-- 决定文章 thesis、argument 或 audience。
-- 产出看起来像 finished writing 的 prose。
-- 用 connective tissue 把 fragments 连接起来。
-
-如果用户已经准备好做这些，session 就结束了，换另一个工具接手。不要命名或推荐那个工具；直接停止。
 
 </supporting-info>
