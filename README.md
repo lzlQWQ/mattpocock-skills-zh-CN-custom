@@ -1,5 +1,13 @@
 # Matt Pocock Agent Skills 中文版
 
+## 为什么需要这个中文版？
+
+- 更好适配中文大语言模型
+- 方便中文母语开发者
+- 方便接入中文开发流程
+
+## 原版技能包括
+
 给 Claude Code / Codex / AI coding agents 用的工程化工作流。
 
 不是 prompt 合集，不是 vibe coding。它帮你在真实项目里做：
