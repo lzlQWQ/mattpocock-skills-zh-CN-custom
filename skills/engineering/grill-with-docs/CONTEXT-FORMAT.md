@@ -20,18 +20,14 @@ _Avoid_: Bill, payment request
 **Customer**:
 A person or organization that places orders.
 _Avoid_: Client, buyer, account
-
 ```
 
 ## Rules
 
-- **Be opinionated.** 当多个词表示同一概念时，选择最合适的那个，并把其他词列为应避免的 aliases。
-- **Flag conflicts explicitly.** 如果一个 term 被含糊使用，在 “Flagged ambiguities” 中用清晰 resolution 标出。
+- **Be opinionated.** 当多个词表示同一概念时，选择最合适的那个，并把其他词列在 `_Avoid_` 下。
 - **Keep definitions tight.** 最多一两句话。定义它是什么，而不是它做什么。
-- **Show relationships.** 使用加粗 term 名称，并在显然的地方表达 cardinality。
 - **Only include terms specific to this project's context.** 通用编程概念（timeouts、error types、utility patterns）不属于这里，即使项目大量使用。添加 term 前先问：这是当前 context 独有的概念，还是通用编程概念？只有前者属于这里。
 - **Group terms under subheadings** when natural clusters emerge. 如果所有 terms 属于单个内聚区域，扁平列表就可以。
-- **Write an example dialogue.** 写一段 dev 和 domain expert 的对话，自然展示这些 terms 如何交互，并澄清相关概念之间的边界。
 
 ## Single vs multi-context repos
 
