@@ -10,6 +10,6 @@ disable-model-invocation: true
 
 定期运行 typechecking，定期运行单个测试文件，并在最后运行完整测试套件。
 
-完成后，使用 `/review` 审查这次工作。
+完成后，使用 `/code-review` 审查这次工作。
 
 把工作提交到当前 branch。

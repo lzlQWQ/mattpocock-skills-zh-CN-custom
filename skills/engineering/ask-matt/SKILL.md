@@ -1,6 +1,6 @@
 ---
 name: ask-matt
-description: 询问当前情境适合哪个 skill 或 flow；它是本仓库 user-invoked skills 的 router。
+description: 询问当前情境适合哪个 skill 或 flow；它是本仓库所有 skills 的 router。
 disable-model-invocation: true
 ---
 
@@ -8,20 +8,22 @@ disable-model-invocation: true
 
 你不需要记住每个 skill，所以直接问。
 
-**Flow** 是穿过 skills 的一条路径。大多数路径沿着一条 **main flow** 前进，两个 **on-ramps** 会并入它。其他内容都是 standalone。
+**Flow** 是穿过 skills 的一条路径。大多数路径沿着一条 **main flow** 前进，两个 **on-ramps** 会并入它。其他内容要么是 standalone，要么是在下层运行的 vocabulary layer。
 
-## Main flow: idea -> ship
+## The main flow: idea -> ship
 
 这是大多数工作的路线：你有一个想法，并希望把它构建出来。
 
-1. **`/grill-with-docs`** - 通过访谈打磨想法。有 codebase 时从这里开始：它是 stateful 的，会把学到的内容保存在 `CONTEXT.md` 和 ADRs 中。（没有 codebase？用 `/grill-me`，见 Standalone。）
+1. **`/grill-with-docs`** - 通过访谈打磨想法。有 codebase 时从这里开始：它是 stateful 的，会把学到的内容保存在 `CONTEXT.md` 和 ADRs 中。（没有 codebase？用 `/grill-me`，见 Standalone。两者都运行同一个 `/grilling` primitive；`grill-with-docs` 是会留下文档痕迹的版本。）
 2. **分支 - 能否在对话中解决所有问题？** 如果某个问题需要可运行的答案（state、business logic，或必须亲眼看到的 UI），就通过 prototype 绕行，并用 **`/handoff`** 在两个方向桥接（见 Crossing sessions）：
-   - **`/handoff`** 导出，然后基于该文件打开新 session；
+   - **`/handoff`** 导出，然后基于该文件打开 fresh session；
    - **`/prototype`** 用 throwaway code 回答问题；
    - **`/handoff`** 把学到的内容带回来，并在原始 idea thread 中引用它。
 3. **分支 - 这是 multi-session build 吗？**
    - **是** -> **`/to-prd`**（把 thread 变成 PRD）-> **`/to-issues`**（把 PRD 拆成可独立领取的 issues）。因为 issues 彼此独立，**每个 issue 之间都要清空 context**：每个 issue 启动一个 fresh session，把 PRD 和单个 issue 传给 **`/implement`**。
    - **否** -> 在当前 context window 里直接运行 **`/implement`**。
+
+   无论哪种方式，**`/implement`** 都会在内部驱动 **`/tdd`** 构建每个 issue：一次一个 red-green slice；然后用 **`/code-review`** 收尾，对 diff 做 Standards + Spec 双轴 review，再提交。只想 test-first 构建一个具体 behavior 时，单独用 **`/tdd`**；想按固定点 review branch 或 PR 时，单独用 **`/code-review`**。
 
 ### Context hygiene
 
@@ -37,11 +39,20 @@ disable-model-invocation: true
 
   Triage 只用于 **不是你创建的** issues：bug reports、incoming feature requests，以及任何原始进入的内容。`/to-issues` 产出的 issues 已经是 agent-ready，不要再 triage。
 
+- **Something's broken** -> **`/diagnosing-bugs`**。用于难处理的问题：第一眼看不出的 bug、间歇性 flake、夹在两个 known-good states 之间的 regression。它在拥有 **tight feedback loop** 前拒绝空想，也就是一个已经能在 _这个_ bug 上变红的命令；然后用 regression test 修复。如果复盘发现真正问题是没有好 seam 能锁住 bug，它会把后续交给 **`/improve-codebase-architecture`**。
+
 ## Codebase health
 
 这不是 feature work，而是维护。
 
-- **`/improve-codebase-architecture`** - 有空时运行，保持 codebase 适合 agents 操作。它会暴露 deepening opportunities；选择其中一个会生成一个 idea，可以带入 main flow 的 `/grill-with-docs`。
+- **`/improve-codebase-architecture`** - 有空时运行，保持 codebase 适合 agents 操作。它会暴露 **deepening opportunities**；选择其中一个会生成一个 idea，可以带入 main flow 的 `/grill-with-docs`。它负责找候选项；**`/codebase-design`**（见下文）是你设计已选候选项时使用的工作台。
+
+## Vocabulary underneath
+
+两个 model-invoked references 在其他 skills 下层运行，分别是自己词汇的 single source of truth。问题在于**词语**而不是流程时直接用它们；也可以让上面的 skills 自动拉起它们。
+
+- **`/domain-modeling`** - 打磨项目的 _domain_ language：挑战模糊术语、解决 overloaded word（例如一个 "account" 承担三件事）、把难以逆转的决策记录为 ADR。它是 `/grill-with-docs` 用来保持 `CONTEXT.md` glossary 干净的主动纪律。
+- **`/codebase-design`** - deep-module vocabulary（module、interface、depth、seam、adapter、leverage、locality），用于设计 module 的 _shape_：把大量 behavior 放在 clean seam 上的小 interface 后面。`/tdd` 和 `/improve-codebase-architecture` 都使用这套语言。
 
 ## Crossing sessions
 
@@ -53,6 +64,8 @@ disable-model-invocation: true
 完全在 main flow 之外。
 
 - **`/grill-me`** - 与 `/grill-with-docs` 一样的持续访谈，但用于 **没有 codebase** 的情境。它是 stateless 的：不在本地保存内容，也不构建 `CONTEXT.md`。用它来打磨任何不属于 repo 的计划或设计。
+- **`/prototype`** - 一个小型 throwaway program，用来回答一个设计问题：这个 state model 感觉对吗，或者这个 UI 应该是什么样。它从第一天起就是 throwaway：保留答案，删除代码。它是 main flow 第 2 步的绕行，但任何难以纸面解决的 design question 都可以直接用它。
+- **`/research`** - 把阅读工作委托给 **background agent**：它对照 **primary sources** 调研问题，然后在 repo 中留下带引用的 Markdown 文件。你可以在它阅读时继续工作。产物应带入 `/grill-with-docs` 的 main flow；research 提供思考材料，但不取代思考。
 - **`/teach`** - 使用当前目录作为 stateful workspace，跨多个 sessions 学习一个概念。
 - **`/writing-great-skills`** - 编写和编辑 skills 的 reference。
 

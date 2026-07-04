@@ -56,22 +56,24 @@ npx skills@latest add vinvcn/mattpocock-skills-zh-CN
 
 **User-invoked**
 
-- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)** - 询问当前情境适合哪个 skill 或 flow；它是本仓库 user-invoked skills 的 router。
+- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)** - 询问当前情境适合哪个 skill 或 flow；它是本仓库所有 skills 的 router。
 - **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** - 追问式访谈，同时构建项目的 domain model、打磨术语，并内联更新 `CONTEXT.md` 与 ADRs。
 - **[triage](./skills/engineering/triage/SKILL.md)** - 通过 triage roles state machine 推进 issues。
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** - 扫描 codebase 中的 deepening opportunities，生成可视化 HTML report，然后围绕你选中的候选项继续 grilling。
 - **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** - 配置 issue tracker、triage labels 和 domain docs 布局。每个 repo 运行一次。
 - **[to-issues](./skills/engineering/to-issues/SKILL.md)** - 用 vertical slices 把计划、spec 或 PRD 拆成可独立领取的 issues。
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** - 把当前对话整理成 PRD 并发布到 issue tracker。
-- **[prototype](./skills/engineering/prototype/SKILL.md)** - 构建 throwaway prototype，回答 state/business-logic 问题或探索 UI 变体。
 - **[implement](./skills/engineering/implement/SKILL.md)** - 基于 PRD 或 issue 集合实现一段工作。
 
 **Model-invoked**
 
+- **[prototype](./skills/engineering/prototype/SKILL.md)** - 构建 throwaway prototype，回答 state/business-logic 问题或探索 UI 变体。
 - **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)** - 面向棘手 bug 和性能回退的纪律化诊断循环：reproduce -> minimise -> hypothesise -> instrument -> fix -> regression-test。
+- **[research](./skills/engineering/research/SKILL.md)** - 对照 high-trust primary sources 调研问题，并把带引用的 findings 保存为 Markdown 文件。
 - **[tdd](./skills/engineering/tdd/SKILL.md)** - 使用 red-green-refactor 循环做 test-driven development。
 - **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)** - 主动构建和打磨项目 domain model：挑战术语、构造场景、更新 `CONTEXT.md` 和 ADRs。
 - **[codebase-design](./skills/engineering/codebase-design/SKILL.md)** - 设计 deep modules 的共享纪律和词汇：small interface、clean seam、通过 interface 测试。
+- **[code-review](./skills/engineering/code-review/SKILL.md)** - 对固定点以来的 diff 做双轴 review：Standards 与 Spec 分开检查并并行运行。
 - **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)** - 解决正在进行的 git merge/rebase conflicts。
 
 ### Productivity
@@ -102,6 +104,7 @@ npx skills@latest add vinvcn/mattpocock-skills-zh-CN
 
 ### 发布记录
 
+- 2026-07-04：同步上游 `mattpocock/skills@272f99b`，本地提交 `待记录`。新增 human-facing skill docs，推广 `code-review`，新增 `research`，更新 `ask-matt` flow map、`tdd` seam 规则、`grilling` confirmation gate，并将 in-progress `decision-mapping` 刷新为 `wayfinder`。
 - 2026-06-29：同步上游 `mattpocock/skills@5d78bd0`，本地提交 `79f92ff`。新增 `ask-matt`、`codebase-design`、`domain-modeling`、`diagnosing-bugs`、`grilling`、`writing-great-skills` 等内容，移除公开的 `caveman`、`zoom-out`、`write-a-skill`，并按 User-invoked / Model-invoked 刷新索引。
 - 2026-06-16：同步上游 `mattpocock/skills@694fa30`，本地提交 `6b594d2`。将 `teach` 从 in-progress 提升到 productivity，并更新 teaching workspace 指南。
 - 2026-06-05：同步上游 `mattpocock/skills@aaf2453`，本地提交 `0f36f6d`。更新 `to-prd` 的 seam-based 测试决策指导，并强化 in-progress `teach` explainers。
@@ -113,10 +116,12 @@ npx skills@latest add vinvcn/mattpocock-skills-zh-CN
 
 ### 最新 main 验证
 
-针对 `mattpocock/skills@5d78bd0` 的同步结果：
+针对 `mattpocock/skills@272f99b` 的同步结果：
 
 - [x] 安装命令保持指向 `vinvcn/mattpocock-skills-zh-CN`。
 - [x] 公开 skill 索引一致：`engineering/`、`productivity/`、`misc/` 已同步到顶层 README 和 `.claude-plugin/plugin.json`；`personal/`、`in-progress/`、`deprecated/` 未进入 plugin 或顶层公开索引。
 - [x] 顶层 README skill 条目均链接到对应 `SKILL.md`。
+- [x] `engineering/` 与 `productivity/` 的 human-facing docs pages 已补齐到 `docs/engineering/` 和 `docs/productivity/`。
 - [x] 新增和变更的 prose-bearing files 已按 skill-guided content localization 翻译；代码块、命令、路径、URLs 和 identifiers 保持行为关键内容不变。
-- [!] 当前环境没有可用 `git` 命令，无法运行依赖 `git ls-files` / `git diff` 的仓库脚本；已改用文件列表和索引规则做本轮人工一致性检查。
+- [x] `node scripts/check-translation.mjs`、`git diff --check` 和 `git diff --cached --check` 通过。
+- [!] `node scripts/audit-english.mjs` 仍会列出合理英文术语、命令、示例和 identifiers，作为人工复核队列，不作为阻塞项。

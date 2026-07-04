@@ -8,3 +8,5 @@ description: Interview the user relentlessly about a plan or design. Use when th
 一次只问一个问题，并等待我对该问题的反馈后再继续。一次问多个问题会让人失去方向。
 
 如果某个问题可以通过探索 codebase 回答，就去探索 codebase，而不是问我。
+
+在我确认我们已经达成共同理解之前，不要执行这个计划。
