@@ -20,7 +20,7 @@
 
 ### 发布记录
 
-- 2026-07-12：同步上游 `mattpocock/skills@391a270`，本地同步提交将在本次提交后写入。将 `to-prd`/`to-issues` 重组为 `to-spec`/`to-tickets`，把 `wayfinder` 提升到 engineering，新增 `setup-ts-deep-modules` 草稿，并刷新 prototype、setup 与公开索引。
+- 2026-07-12：同步上游 `mattpocock/skills@391a270`，本地提交 `62cf4a9`。将 `to-prd`/`to-issues` 重组为 `to-spec`/`to-tickets`，把 `wayfinder` 提升到 engineering，新增 `setup-ts-deep-modules` 草稿，并刷新 prototype、setup 与公开索引。
 - 2026-07-04：同步上游 `mattpocock/skills@272f99b`，本地提交 `042407b`。新增 human-facing skill docs，推广 `code-review`，新增 `research`，更新 `ask-matt` flow map、`tdd` seam 规则、`grilling` confirmation gate，并将 in-progress `decision-mapping` 刷新为 `wayfinder`。
 - 2026-06-29：同步上游 `mattpocock/skills@5d78bd0`，本地提交 `79f92ff`。新增 `ask-matt`、`codebase-design`、`domain-modeling`、`diagnosing-bugs`、`grilling`、`writing-great-skills` 等内容，移除公开的 `caveman`、`zoom-out`、`write-a-skill`，并按 User-invoked / Model-invoked 刷新索引。
 - 2026-06-16：同步上游 `mattpocock/skills@694fa30`，本地提交 `6b594d2`。将 `teach` 从 in-progress 提升到 productivity，并更新 teaching workspace 指南：`lessons/`、`reference/`、storage strength、primary source、follow-up questions 和 quiz 答案长度约束。
