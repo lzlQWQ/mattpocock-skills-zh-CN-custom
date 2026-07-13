@@ -2,7 +2,7 @@
 name: teach
 description: 在这个工作区中教用户一个新技能或概念。
 disable-model-invocation: true
-argument-hint: "What would you like to learn about?"
+argument-hint: "你想学习什么？"
 ---
 
 用户要求你教他们某件事。这是一个 stateful request：他们打算在多个 sessions 中学习这个 topic。
