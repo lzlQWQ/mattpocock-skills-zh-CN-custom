@@ -5,7 +5,7 @@ argument-hint: "下一个会话将用于什么？"
 disable-model-invocation: true
 ---
 
-编写一份 handoff document，总结当前对话，让 fresh agent 能继续工作。保存到用户操作系统的临时目录，不要保存到当前 workspace。
+编写一份 handoff document，总结当前对话，让 fresh agent 能继续工作。保存到当前 workspace 的 docs\handoff 目录下。
 
 在文档中包含 "suggested skills" section，建议下一个 agent 应调用哪些 skills。
 
