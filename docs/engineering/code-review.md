@@ -20,7 +20,7 @@ npx skills update code-review
 
 输入 `/code-review`，或当你要求 review branch、PR、work-in-progress changes，或说 “review since X” 时由 agent 自动触发。
 
-当你有一个 diff 和一个 known-good point，并想独立回答 “built right?” 与 “right thing?” 时使用它。写代码本身用 [tdd](https://aihero.dev/skills-tdd)；按完整 spec 构建用 [implement](https://aihero.dev/skills-implement)。
+当你有一个 diff 和一个 known-good point，并想独立回答 “built right?” 与 “right thing?” 时使用它。明确需要 test-first 时用 [tdd](https://aihero.dev/skills-tdd)；按完整 spec 构建并按风险控制验证开销时用 [implement](https://aihero.dev/skills-implement)。
 
 ## Prerequisites
 

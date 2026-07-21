@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: 测试驱动开发。适用于用户想用先写测试的方式构建功能或修复缺陷、提到 “red-green-refactor”，或需要集成测试时。
+description: 测试驱动开发。适用于用户明确要求 test-first 或 red-green-refactor，或 regression 需要 tight feedback loop 时。
 ---
 
 # Test-Driven Development
@@ -31,6 +31,15 @@ Tests 应通过 public interfaces 验证 behavior，而不是 implementation det
 
 ## Rules of the loop
 
-- **Red before green.** 先写 failing test，再只写足够让它通过的代码。不要预判未来 tests，也不要添加 speculative features。
+- **Meaningful red before green.** Red 必须让 test command 到达 public interface，并因目标 behavior 尚未实现而 assertion failure；然后只写足够让它通过的代码。不要预判未来 tests，也不要添加 speculative features。
 - **One slice at a time.** 每个 cycle 只处理一个 seam、一个 test、一个 minimal implementation。
 - **Refactoring is not part of the loop.** Refactoring 属于 review stage（见 `code-review` skill），不属于 red -> green implementation cycle。
+
+## Meaningful red
+
+不要为了记录一个必然的 failure 而运行 test。缺失 method、type、import、syntax，或错误的 fixture/config 只说明 test harness 尚未准备好，不是 Red。
+
+- 新 public interface 尚不存在时，先建立可编译的最小 signature 或 placeholder implementation，但不要实现目标 behavior。
+- 第一次实际执行必须到达 seam，并因预期 behavior 不满足而失败。
+- 如果执行暴露的是 compile、import、fixture 或 environment 问题，先修复 test harness；这些 failure 不计为 Red。
+- 已有 failing test 已准确覆盖目标 behavior 时，直接使用它，不新增重复 test。
