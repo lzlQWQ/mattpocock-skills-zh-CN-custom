@@ -1,0 +1,7 @@
+interface:
+  display_name: "批量追问"
+  short_description: "每轮集中提出当前全部待确认问题，并根据回答持续追问，直到整体逻辑完全闭环"
+  default_prompt: "使用 $batch-grill-me 一次列出当前全部待确认问题，并持续追问到逻辑完全确认。"
+
+policy:
+  allow_implicit_invocation: false

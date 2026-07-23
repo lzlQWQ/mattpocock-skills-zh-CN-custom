@@ -6,6 +6,7 @@
 
 只有在你显式输入名称时才能调用（`disable-model-invocation: true`）。
 
+- **[batch-grill-me](./batch-grill-me/SKILL.md)** - 每轮集中提出当前全部待确认问题，并持续追问直到逻辑闭环。
 - **[grill-me](./grill-me/SKILL.md)** - 围绕计划或设计进行持续追问，直到 decision tree 的每个分支都被解决。
 - **[handoff](./handoff/SKILL.md)** - 把当前对话压缩成 handoff document，让另一个 agent 可以继续。
 - **[teach](./teach/SKILL.md)** - 使用当前目录作为 stateful teaching workspace，在多个 sessions 中教用户一个新 skill 或概念。
